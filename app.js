@@ -11,6 +11,17 @@ const { request } = require("http");
 const dbPath = path.join(__dirname, "cricketTeam.db");
 let db = null;
 
+// Function for conversion of snakeCase to CamelCase
+
+function convertToCamelCase(object) {
+  return {
+    playerId: object.player_id,
+    playerName: object.player_name,
+    jerseyNumber: object.jersey_number,
+    role: object.role,
+  };
+}
+
 // Initialize DB
 
 const initializeDBAndServer = async () => {
@@ -39,7 +50,11 @@ app.get("/players/", async (request, response) => {
     
     `;
   const playerList = await db.all(getPlayerQuery);
-  response.send(playerList);
+  const camelCase = playerList.map((eachPlayer) =>
+    convertToCamelCase(eachPlayer)
+  );
+  response.send(camelCase);
+  
 });
 
 // POST method
@@ -74,7 +89,8 @@ app.get("/players/:playerId/", async (request, response) => {
   WHERE player_id = ${playerId};`;
   const player = await db.get(getPlayerByIdQuery);
   console.log(player);
-  response.send(player);
+  const op = convertToCamelCase(player);
+  response.send(op);
 });
 
 // Put API
