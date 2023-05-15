@@ -1,0 +1,25 @@
+GET http://localhost:1012/players/
+
+###
+POST http://localhost:1012/players/ 
+content
+{
+  "playerName": "Vishal",
+  "jerseyNumber": 17,
+  "role": "Bowler"
+}
+
+###
+GET http://localhost:1012/players/10/
+
+
+###
+PUT http://localhost:1012/players/10/
+{
+  "playerName": "Maneesh",
+  "jerseyNumber": 54,
+  "role": "All-rounder"
+}
+
+###
+DELETE http://localhost:1012/players/11/
