@@ -64,9 +64,9 @@ app.post("/players/", async (request, response) => {
   const { playerName, jerseyNumber, role } = playerDetails;
   // console.log(playerName, jerseyNumber, role);
   const addNewPlayerQuery = `
-  INSERT INTO cricket_team (player_id, player_name,jersey_number,role)
+  INSERT INTO cricket_team (player_name,jersey_number,role)
   VALUES(
-    ${24},
+    
     '${playerName}',
     ${jerseyNumber},
     '${role}'
